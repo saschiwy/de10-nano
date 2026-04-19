@@ -1,6 +1,6 @@
 SUMMARY = "Minimal DE10-Nano FPGA demo bitstream + loader"
 DESCRIPTION = "Installs fpga.rbf and a Device Tree overlay (fpga.dtbo) into \
-/lib/firmware/, plus a /usr/bin/load-fpga helper that configures the FPGA \
+${nonarch_base_libdir}/firmware/, plus a /usr/bin/load-fpga helper that configures the FPGA \
 fabric from the HPS at runtime using the Linux FPGA Manager + configfs."
 LICENSE = "CLOSED"
 
@@ -21,16 +21,16 @@ do_compile() {
 }
 
 do_install() {
-    install -d ${D}/lib/firmware
-    install -m 0644 ${WORKDIR}/fpga.rbf  ${D}/lib/firmware/fpga.rbf
-    install -m 0644 ${WORKDIR}/fpga.dtbo ${D}/lib/firmware/fpga.dtbo
+    install -d ${D}${nonarch_base_libdir}/firmware
+    install -m 0644 ${WORKDIR}/fpga.rbf  ${D}${nonarch_base_libdir}/firmware/fpga.rbf
+    install -m 0644 ${WORKDIR}/fpga.dtbo ${D}${nonarch_base_libdir}/firmware/fpga.dtbo
 
     install -d ${D}${bindir}
     install -m 0755 ${WORKDIR}/load-fpga.sh ${D}${bindir}/load-fpga
 }
 
 FILES:${PN} = " \
-    /lib/firmware/fpga.rbf \
-    /lib/firmware/fpga.dtbo \
+    ${nonarch_base_libdir}/firmware/fpga.rbf \
+    ${nonarch_base_libdir}/firmware/fpga.dtbo \
     ${bindir}/load-fpga \
 "

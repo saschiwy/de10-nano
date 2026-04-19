@@ -1,0 +1,62 @@
+FROM ubuntu:22.04
+
+LABEL authors="Sascha Schiwy" Name=yocto Version=0.0.1
+
+ENV DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-c"]
+
+RUN apt-get -y update && \
+apt-get install -y \
+gawk \
+wget \
+screen \
+git \
+diffstat \
+unzip \
+texinfo \
+gcc \
+build-essential \
+chrpath \
+socat \
+cpio \
+python3 \
+python3-pip \
+python3-pexpect \
+xz-utils \
+debianutils \
+iputils-ping \
+python3-git \
+python3-jinja2 \
+libegl1-mesa \
+libsdl1.2-dev \
+xterm \
+python3-subunit \
+mesa-common-dev \
+zstd \
+liblz4-tool \
+cmake \
+python3-pytest-pylint \
+locales \
+u-boot-tools \
+gcc-arm-none-eabi \
+nano \
+vim \
+python3-subunit \
+file \
+libacl1
+
+
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8
+
+RUN mkdir /yocto
+RUN useradd -ms /bin/bash yocto_user
+RUN chown -R yocto_user /yocto
+
+USER yocto_user
+WORKDIR /yocto
+
+CMD ["/bin/bash"]

@@ -6,3 +6,4 @@ build/workspace
 build/bitbake-cookerdaemon.log
 build/conf/*.txt
 build/conf/*.cfg
+build/bitbake*

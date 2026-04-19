@@ -6,3 +6,7 @@
 	path = layers/meta-intel-fpga
 	url = https://git.yoctoproject.org/meta-intel-fpga
 	branch = scarthgap
+[submodule "layers/meta-openembedded"]
+	path = layers/meta-openembedded
+	url = https://github.com/openembedded/meta-openembedded.git
+	branch = scarthgap
